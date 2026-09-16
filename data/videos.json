@@ -1,0 +1,17 @@
+{
+  "titre": "Vidéos",
+  "videos": [
+    {
+      "titre": "[TITRE DE LA VIDÉO 1]",
+      "youtubeId": "dQw4w9WgXcQ",
+      "description": "[DESCRIPTION]",
+      "date": "2023"
+    },
+    {
+      "titre": "[TITRE DE LA VIDÉO 2]",
+      "youtubeId": "dQw4w9WgXcQ",
+      "description": "[DESCRIPTION]",
+      "date": "2023"
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site-Vie - EPC</title>
+  <meta name="description" content="Site de mémoire et de vie d'un fidèle de l'Église Presbytérienne Camerounaise">
+
+  <!-- ============================================
+       SÉCURITÉ (Content Security Policy)
+       ============================================ -->
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+  style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
+  img-src 'self' https: data: blob:;
+  media-src 'self' https:;
+  frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com;
+  connect-src 'self' https://*.supabase.co;
+">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- ============================================
+       BOOTSTRAP 5.3.3 + ICÔNES
+       ============================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" 
+        rel="stylesheet">
+
+  <!-- ============================================
+       POLICES GOOGLE
+       ============================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@400;600;700&display=swap" 
+        rel="stylesheet">
+
+  <!-- ============================================
+       STYLES PERSONNALISÉS
+       ============================================ -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ============================================
+       SEO STRUCTURÉ (JSON-LD)
+       ============================================ -->
+  <script type="application/ld+json" id="seo-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nom du fidèle",
+    "birthDate": "",
+    "deathDate": "",
+    "description": "Site de mémoire et de vie"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============================================
+       BANDEAU D'ALERTE (MODE MÉMOIRE)
+       Visible uniquement si statut = memoire
+       ============================================ -->
+  <div id="memoire-banner" class="d-none bg-dark text-white text-center py-2">
+    <i class="bi bi-moon-stars-fill"></i>
+    <span data-i18n="memoire-banner">En mémoire de</span>
+    <strong id="memoire-banner-name"></strong>
+    <span data-i18n="memoire-banner-dates" id="memoire-banner-dates"></span>
+  </div>
+
+  <!-- ============================================
+       SÉLECTEURS (LANGUE + THÈME + BANNIÈRE)
+       ============================================ -->
+  <div class="position-fixed top-0 end-0 p-3 d-flex gap-2" style="z-index: 1050;">
+    <!-- Sélecteur de langue -->
+    <select id="language-selector" class="form-select form-select-sm shadow-sm" 
+            style="width: auto;" onchange="changeLanguage(this.value)">
+      <option value="fr">???? Français</option>
+      <option value="en">???? English</option>
+    </select>
+  </div>
+
+  <!-- ============================================
+       HERO SECTION
+       ============================================ -->
+  <section id="hero" class="hero d-flex align-items-center justify-content-center text-center text-white">
+    <div class="container">
+      <h1 class="display-3 fw-bold mb-3" id="hero-name" data-i18n="hero-title">
+        Chargement...
+      </h1>
+      <p class="lead mb-4" id="hero-dates"></p>
+      <p class="fst-italic mb-0" id="hero-verset"></p>
+    </div>
+    <!-- Indicateur de défilement -->
+    <a href="#navigation" class="hero-scroll-indicator">
+      <i class="bi bi-chevron-double-down"></i>
+    </a>
+  </section>
+
+  <!-- ============================================
+       NAVIGATION PRINCIPALE
+       ============================================ -->
+  <nav id="navigation" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#" id="nav-brand">
+        <i class="bi bi-bookmark-heart-fill text-primary"></i>
+        <span id="nav-brand-text">Site-Vie</span>
+      </a>
+      <button class="navbar-toggler" type="button" 
+              data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto" id="nav-links">
+          <!-- Les liens sont générés dynamiquement par script.js -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       CONTENU PRINCIPAL
+       Les sections sont générées dynamiquement
+       ============================================ -->
+  <main id="main-content">
+    
+    <!-- 1. BIOGRAPHIE -->
+    <section id="biographie" class="section bg-light" data-module="biographie">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="bio-title">
+          <i class="bi bi-person-circle"></i> Biographie
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8" id="bio-content">
+            <!-- Contenu chargé dynamiquement -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. GALERIE PHOTOS -->
+    <section id="galerie" class="section bg-white" data-module="galerie">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="gallery-title">
+          <i class="bi bi-images"></i> Galerie Photos
+        </h2>
+        <div class="row g-3 mb-4" id="galerie-grid">
+          <!-- Images chargées dynamiquement -->
+        </div>
+        <div class="text-center" id="galerie-link-container">
+          <!-- Lien vers album complet -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. VIDÉOS -->
+    <section id="videos" class="section bg-light" data-module="videos">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="videos-title">
+          <i class="bi bi-camera-video-fill"></i> Vidéos
+        </h2>
+        <div class="row g-4" id="videos-grid">
+          <!-- Vidéos chargées dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AUDIOS / RADIO -->
+    <section id="audios" class="section bg-white" data-module="audios">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="audios-title">
+          <i class="bi bi-music-note-beamed"></i> Audios & Radio
+        </h2>
+        <div class="row g-4" id="audios-grid">
+          <!-- Lecteurs audio chargés dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ACTIVITÉS PAROISSIALES (VIVANT) -->
+    <section id="activites" class="section bg-light" data-module="activites">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="activites-title">
+          <i class="bi bi-people-fill"></i> Activités Paroissiales
+        </h2>
+        <div class="row g-4" id="activites-grid">
+          <!-- Activités chargées dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SACREMENTS -->
+    <section id="sacrements" class="section bg-white" data-module="sacrements">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="sacrements-title">
+          <i class="bi bi-droplet-fill"></i> Sacrements
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10" id="sacrements-content">
+            <!-- Sacrements chargés dynamiquement -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PUBLICATIONS -->
+    <section id="publications" class="section bg-light" data-module="publications">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="publications-title">
+          <i class="bi bi-journal-text"></i> Publications
+        </h2>
+        <div class="row g-4" id="publications-grid">
+          <!-- Publications chargées dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ESPACE TÉLÉCHARGEMENT -->
+    <section id="telechargements" class="section bg-white" data-module="telechargements">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="downloads-title">
+          <i class="bi bi-download"></i> Espace Téléchargement
+        </h2>
+        <div class="row g-4" id="telechargements-grid">
+          <!-- Fichiers chargés dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TÉMOIGNAGES -->
+    <section id="temoignages" class="section bg-light" data-module="temoignages">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="testimonies-title">
+          <i class="bi bi-chat-quote-fill"></i> Témoignages
+        </h2>
+        <div class="row g-4" id="temoignages-grid">
+          <!-- Témoignages chargés dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ARBRE GÉNÉALOGIQUE -->
+    <section id="arbre" class="section bg-white" data-module="arbre_genealogique">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="tree-title">
+          <i class="bi bi-diagram-3-fill"></i> Arbre Généalogique
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10" id="arbre-content">
+            <!-- Arbre chargé dynamiquement -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PROGRAMME DES OBSÈQUES (MÉMOIRE UNIQUEMENT) -->
+    <section id="programme-obseques" class="section bg-dark text-white" data-module="programme_obseques">
+      <div class="container">
+        <h2 class="section-title text-center mb-5 text-white" data-i18n="funeral-title">
+          <i class="bi bi-calendar-event"></i> Programme des Obsèques
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10" id="programme-content">
+            <!-- Programme chargé dynamiquement -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. LIVRE DE CONDOLÉANCES (MÉMOIRE UNIQUEMENT) -->
+    <section id="condoleances" class="section bg-light" data-module="condoleances">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="condolences-title">
+          <i class="bi bi-envelope-heart-fill"></i> Livre de Condoléances
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h5 data-i18n="condolences-form-title">Laisser un message</h5>
+                <form id="condoleances-form">
+                  <div class="mb-3">
+                    <label class="form-label" data-i18n="form-name">Votre nom</label>
+                    <input type="text" class="form-control" id="cond-name" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" data-i18n="form-message">Votre message</label>
+                    <textarea class="form-control" id="cond-message" rows="4" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-send"></i> 
+                    <span data-i18n="form-submit">Envoyer</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div id="condoleances-list">
+              <!-- Messages chargés dynamiquement -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. HOMMAGES OFFICIELS (MÉMOIRE UNIQUEMENT) -->
+    <section id="hommages" class="section bg-white" data-module="hommages">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="tributes-title">
+          <i class="bi bi-award-fill"></i> Hommages
+        </h2>
+        <div class="row g-4" id="hommages-grid">
+          <!-- Hommages chargés dynamiquement -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. FAQ -->
+    <section id="faq" class="section bg-light" data-module="faq">
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-i18n="faq-title">
+          <i class="bi bi-question-circle-fill"></i> Questions Fréquentes
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faq-accordion">
+              <!-- FAQ chargée dynamiquement -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION : PARTAGE SOCIAL -->
+    <section id="partage" class="section bg-white" data-module="partage_social">
+      <div class="container text-center">
+        <h3 class="mb-4" data-i18n="share-title">
+          <i class="bi bi-share-fill"></i> Partager ce site
+        </h3>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <button class="btn btn-primary" onclick="shareOn('facebook')">
+            <i class="bi bi-facebook"></i> Facebook
+          </button>
+          <button class="btn btn-success" onclick="shareOn('whatsapp')">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </button>
+          <button class="btn btn-dark" onclick="shareOn('twitter')">
+            <i class="bi bi-twitter-x"></i> X
+          </button>
+          <button class="btn btn-info" onclick="shareOn('email')">
+            <i class="bi bi-envelope-fill"></i> Email
+          </button>
+          <button class="btn btn-secondary" onclick="copyLink()">
+            <i class="bi bi-link-45deg"></i> Copier le lien
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       BOUTON RETOUR EN HAUT
+       ============================================ -->
+  <button id="back-to-top" 
+          class="btn btn-primary rounded-circle position-fixed d-none" 
+          style="bottom: 20px; right: 20px; z-index: 1000; width: 50px; height: 50px;"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- ============================================
+       PIED DE PAGE
+       ============================================ -->
+  <footer class="footer bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5 class="fw-bold" id="footer-name"></h5>
+          <p id="footer-paroisse" class="mb-1"></p>
+          <p class="text-muted small" id="footer-dates"></p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-1">
+            <i class="bi bi-heart-fill text-danger"></i> 
+            <span data-i18n="footer-message">Avec amour et respect</span>
+          </p>
+          <p class="text-muted small mb-0">
+            © <span id="footer-year"></span> - 
+            <span data-i18n="footer-rights">Tous droits réservés</span>
+          </p>
+        </div>
+      </div>
+      <hr class="bg-secondary">
+      <div class="text-center text-muted small">
+        <p class="mb-0" data-i18n="footer-disclaimer">
+          Ce site est un projet indépendant et n'est affilié ni à l'EPC officielle, 
+          ni à l'EPCO, ni à aucune entité religieuse.
+        </p>
+        <p class="mb-0 mt-2">
+          <span data-i18n="footer-version">Version</span>: 
+          <span id="footer-version">1.0.0</span> | 
+          <span data-i18n="footer-template">Template</span>: 
+          <a href="https://github.com/portailepc/epc-template-memorial" 
+             class="text-info" target="_blank">epc-template-memorial</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       MODAL POUR AGRANDIR LES MÉDIAS
+       ============================================ -->
+  <div class="modal fade" id="mediaModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mediaModalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center" id="mediaModalBody">
+          <!-- Contenu cloné dynamiquement -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <span data-i18n="modal-close">Fermer</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       INDICATEUR DE CHARGEMENT
+       ============================================ -->
+  <div id="loading-overlay" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-white" style="z-index: 9999;">
+    <div class="text-center">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+      <p class="mt-3 text-muted" data-i18n="loading">Chargement du site...</p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SCRIPTS
+       ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+          crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

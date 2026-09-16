@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "template": "-epc-template-memorial-ok",
+    "created": "2026-09-16",
+    "lastUpdate": "2026-09-16"
+  },
+  "fidele": {
+    "id": "[nom-prenom-annee]",
+    "nom": "[NOM]",
+    "prenom": "[Prenom]",
+    "nomComplet": "[Prenom NOM]",
+    "sexe": "F",
+    "naissance": "1950-01-01",
+    "lieuNaissance": "[Ville, Cameroun]",
+    "deces": null,
+    "lieuDeces": null,
+    "statut": "vivant",
+    "photo": "images/portrait.jpg",
+    "photoBanniere": "",
+    "verset": "[Verset prefere]",
+    "profession": "[Profession]",
+    "paroisse": "[Nom de la paroisse]",
+    "famille": "[slug-famille]",
+    "biographieCourte": "[Phrase de resume]"
+  },
+  "modules": {
+    "biographie": true,
+    "galerie": true,
+    "videos": true,
+    "audios": true,
+    "temoignages": true,
+    "activites": true,
+    "sacrements": true,
+    "publications": true,
+    "telechargements": true,
+    "arbre_genealogique": true,
+    "faq": true,
+    "programme_obseques": false,
+    "condoleances": false,
+    "hommages": false,
+    "multilingue": true,
+    "bannieres_rotatives": true,
+    "partage_social": true,
+    "analytics": false,
+    "notifications": false
+  },
+  "langues": {
+    "parDefaut": "fr",
+    "disponibles": ["fr", "en"]
+  },
+  "baseDeDonnees": {
+    "active": false,
+    "fournisseur": "supabase",
+    "url": "",
+    "clePublique": ""
+  }
+}

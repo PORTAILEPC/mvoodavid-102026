@@ -1,0 +1,16 @@
+{
+  "titre": "Galerie Photos",
+  "photos": [
+    {
+      "src": "images/photo-1.jpg",
+      "legende": "[LÉGENDE 1] - Décrivez le contexte de la photo",
+      "date": "2020"
+    },
+    {
+      "src": "images/photo-2.jpg",
+      "legende": "[LÉGENDE 2] - Qui, où, quand ?",
+      "date": "2021"
+    }
+  ],
+  "albumComplet": "[LIEN VERS ALBUM GOOGLE PHOTOS]"
+}

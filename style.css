@@ -1,0 +1,934 @@
+/* ============================================
+   TEMPLATE SITE-VIE EPC - STYLES PERSONNALISÉS
+   Version 1.0.0 - Bootstrap 5.3.3
+   ============================================ */
+
+/* ============================================
+   VARIABLES CSS (Personnalisables)
+   ============================================ */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #8e7cc3;
+  --accent-color: #e74c3c;
+  --gold-color: #d4af37;
+  --light-bg: #f8f5f2;
+  --dark-bg: #1a2238;
+  --text-color: #333;
+  --text-muted: #6c757d;
+  --font-title: 'Playfair Display', Georgia, serif;
+  --font-body: 'Open Sans', -apple-system, sans-serif;
+  --transition-speed: 0.3s;
+  --border-radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   STYLES DE BASE
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.7;
+  overflow-x: hidden;
+  padding-top: 0;
+}
+
+/* Mode mémoire : légèrement plus solennel */
+body.mode-memoire {
+  background-color: #f5f0eb;
+}
+
+/* ============================================
+   TYPOGRAPHIE
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+.display-3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+/* Titres de sections */
+.section-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 3rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary-color), var(--gold-color));
+  border-radius: 2px;
+}
+
+.section-title i {
+  color: var(--secondary-color);
+  margin-right: 0.5rem;
+}
+
+/* ============================================
+   BANDEAU MÉMOIRE
+   ============================================ */
+#memoire-banner {
+  background: linear-gradient(90deg, var(--dark-bg), var(--primary-color));
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  animation: fadeInDown 0.5s ease;
+}
+
+#memoire-banner i {
+  color: var(--gold-color);
+  margin-right: 0.5rem;
+}
+
+#memoire-banner-dates {
+  margin-left: 0.5rem;
+  opacity: 0.9;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  height: 70vh;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.55)),
+    url('images/banniere-1.jpg') center/cover no-repeat;
+  color: white;
+  transition: background-image 0.8s ease-in-out;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.hero .lead {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero .fst-italic {
+  color: var(--gold-color);
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  margin-top: 1.5rem;
+}
+
+/* Indicateur de défilement */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+  z-index: 3;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.hero-scroll-indicator:hover {
+  opacity: 1;
+  color: var(--gold-color);
+}
+
+/* Mode mémoire : Hero plus solennel */
+body.mode-memoire .hero {
+  filter: saturate(0.85);
+}
+
+body.mode-memoire .hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 34, 56, 0.2);
+  pointer-events: none;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.navbar {
+  transition: all var(--transition-speed) ease;
+  padding: 0.8rem 0;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-brand {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  color: var(--primary-color) !important;
+}
+
+.navbar-brand i {
+  color: var(--accent-color);
+}
+
+.nav-link {
+  font-weight: 600;
+  color: var(--primary-color) !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--secondary-color) !important;
+  background-color: rgba(142, 124, 195, 0.08);
+}
+
+.nav-link.active {
+  color: var(--accent-color) !important;
+  background-color: rgba(231, 76, 60, 0.08);
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section.bg-light {
+  background-color: var(--light-bg) !important;
+}
+
+.section.bg-white {
+  background-color: #ffffff !important;
+}
+
+.section.bg-dark {
+  background-color: var(--dark-bg) !important;
+}
+
+/* ============================================
+   CARTES GÉNÉRIQUES
+   ============================================ */
+.card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed) ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  font-family: var(--font-title);
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* ============================================
+   BIOGRAPHIE
+   ============================================ */
+#bio-content {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #444;
+}
+
+#bio-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* Première lettre en grand (drop cap) */
+#bio-content > p:first-of-type::first-letter {
+  font-family: var(--font-title);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  float: left;
+  line-height: 1;
+  margin: 0.1rem 0.5rem 0 0;
+}
+
+/* ============================================
+   GALERIE PHOTOS
+   ============================================ */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-item::after {
+  content: '\F52A'; /* Icône bi-zoom-in */
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: white;
+  font-size: 2rem;
+  opacity: 0;
+  transition: all var(--transition-speed) ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ============================================
+   VIDÉOS & AUDIOS
+   ============================================ */
+.video-item,
+.audio-item {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed) ease;
+  background: white;
+}
+
+.video-item:hover,
+.audio-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.video-item .ratio {
+  background: #000;
+}
+
+.audio-item {
+  padding: 1.5rem;
+}
+
+.audio-item audio {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   ACTIVITÉS
+   ============================================ */
+.activite-card {
+  background: white;
+  border-left: 4px solid var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition: all var(--transition-speed) ease;
+}
+
+.activite-card:hover {
+  border-left-color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.activite-card .date {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   SACREMENTS
+   ============================================ */
+.sacrement-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.sacrement-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.sacrement-icon {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  min-width: 3rem;
+  text-align: center;
+}
+
+.sacrement-info h5 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.sacrement-info small {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   PUBLICATIONS
+   ============================================ */
+.publication-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition: all var(--transition-speed) ease;
+}
+
+.publication-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.publication-card .type-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   TÉLÉCHARGEMENTS
+   ============================================ */
+.download-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed) ease;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.download-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  color: inherit;
+}
+
+.download-icon {
+  font-size: 2rem;
+  min-width: 3rem;
+  text-align: center;
+  color: var(--accent-color);
+}
+
+.download-info h5 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.download-info small {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   TÉMOIGNAGES
+   ============================================ */
+.temoignage-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  position: relative;
+  transition: all var(--transition-speed) ease;
+}
+
+.temoignage-card::before {
+  content: '\201C';
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  color: var(--secondary-color);
+  opacity: 0.15;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  line-height: 1;
+}
+
+.temoignage-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.temoignage-card p {
+  font-style: italic;
+  color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+.temoignage-card footer {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+/* ============================================
+   ARBRE GÉNÉALOGIQUE
+   ============================================ */
+#arbre-content {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  min-height: 300px;
+  overflow-x: auto;
+}
+
+.arbre-placeholder {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+}
+
+/* ============================================
+   PROGRAMME DES OBSÈQUES
+   ============================================ */
+.programme-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background var(--transition-speed) ease;
+}
+
+.programme-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.programme-item .heure {
+  font-weight: 700;
+  color: var(--gold-color);
+  min-width: 80px;
+  font-family: var(--font-title);
+}
+
+.programme-item .titre {
+  font-weight: 600;
+}
+
+.programme-item .lieu {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   CONDOLÉANCES
+   ============================================ */
+.condoleance-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.condoleance-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.condoleance-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.condoleance-item .nom {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.condoleance-item .date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   HOMMAGES
+   ============================================ */
+.hommage-card {
+  background: linear-gradient(135deg, #f8f5f2 0%, #ffffff 100%);
+  border-radius: var(--border-radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  border-top: 4px solid var(--gold-color);
+  transition: all var(--transition-speed) ease;
+}
+
+.hommage-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.hommage-card .auteur {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: var(--font-title);
+}
+
+.hommage-card .fonction {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+.accordion-button {
+  font-weight: 600;
+  color: var(--primary-color);
+  background: white;
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--light-bg);
+  color: var(--secondary-color);
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: var(--secondary-color);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--dark-bg);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer h5 {
+  color: white;
+  font-family: var(--font-title);
+}
+
+.footer a {
+  color: var(--gold-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+.footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer hr {
+  opacity: 0.15;
+  margin: 2rem 0 1.5rem;
+}
+
+/* ============================================
+   BOUTON RETOUR EN HAUT
+   ============================================ */
+#back-to-top {
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-speed) ease;
+}
+
+#back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   INDICATEUR DE CHARGEMENT
+   ============================================ */
+#loading-overlay {
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Animation d'apparition au scroll */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero {
+    min-height: 60vh;
+    height: auto;
+    padding: 80px 0;
+  }
+  
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  #bio-content > p:first-of-type::first-letter {
+    font-size: 2.5rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem !important;
+  }
+  
+  .position-fixed.top-0.end-0 {
+    position: static !important;
+    text-align: center;
+    padding: 0.5rem !important;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  .sacrement-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .programme-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .programme-item .heure {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITÉ
+   ============================================ */
+/* Focus visible pour la navigation clavier */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* Réduction du mouvement si préféré */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mode impression */
+@media print {
+  .hero,
+  .navbar,
+  #back-to-top,
+  .position-fixed,
+  footer {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .section {
+    padding: 20px 0;
+    page-break-inside: avoid;
+  }
+}

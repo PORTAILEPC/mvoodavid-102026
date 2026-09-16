@@ -1,0 +1,11 @@
+{
+  "titre": "[TITRE DE LA BIOGRAPHIE]",
+  "paragraphes": [
+    "[PARAGRAPHE 1] Présentez ici les origines du fidèle : date et lieu de naissance, famille, enfance, études.",
+    "[PARAGRAPHE 2] Décrivez son parcours professionnel, son engagement dans la paroisse, ses responsabilités.",
+    "[PARAGRAPHE 3] Évoquez ses valeurs, sa foi, son témoignage au sein de la communauté.",
+    "[PARAGRAPHE 4] Parlez de sa famille, ses enfants, ses petits-enfants, son héritage spirituel."
+  ],
+  "citation": "[CITATION BIBLIQUE PRÉFÉRÉE] — [RÉFÉRENCE]",
+  "photo": "images/portrait.jpg"
+}
